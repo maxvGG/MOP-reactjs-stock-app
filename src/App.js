@@ -1,5 +1,5 @@
 
-import Stock from './Stock';
+import Stock from './components/plotly/Stock';
 import './App.css';
 import React from 'react';
 import Home from './Home';
@@ -11,7 +11,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        <NavLink to="/stock" stock="AMZN">stocks</NavLink>
+        {/* <NavLink to="/stock">stocks</NavLink> */}
         <Route path='/stock' component={Stock} ></Route>
         <Route exact path='/' component={Home} />
       </div>
