@@ -9,7 +9,7 @@ export const stock = {
     },
     // &exactDate=20210604
     latestPriceURL: (ticker) => {
-       return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&token=${iex.api_token}`
+       return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&exactDate=20200609&token=${iex.api_token}`
     },
 
     formatPriceData: (data) => {
@@ -28,6 +28,6 @@ export const stock = {
     },
 
     YesterdaysCloseURL: (ticker, date) => {
-        return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&exactDate=20200603&token=${iex.api_token}`
+        return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&token=${iex.api_token}`
      },
 }

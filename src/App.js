@@ -1,5 +1,5 @@
 
-import Stock from './components/plotly/Stock';
+import Stock from './components/plotly/plotly';
 import './App.css';
 import React from 'react';
 import Home from './Home';

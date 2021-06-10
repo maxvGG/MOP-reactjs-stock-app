@@ -15,7 +15,7 @@ class Stock extends React.Component {
                                 <StockRow ticker='AAPL' />
                                 <StockRow ticker='GOOG' />
                                 <StockRow ticker='MSFT' />
-                                <StockRow ticker='TSLA'/>
+                                <StockRow ticker='AMZN'/>
                             </ul>
                         </div>
                     </div>
@@ -23,8 +23,5 @@ class Stock extends React.Component {
             </div>
         )
     }
-   
-    }
-
-
+}
 export default Stock
