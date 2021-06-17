@@ -10,6 +10,7 @@ import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-rou
 function App() {
   return (
     <Router>
+      <a href="https://iexcloud.io">Data provided by IEX Cloud</a>
       <div className="App">
         {/* <NavLink to="/stock">stocks</NavLink> */}
         <Route path='/stock' component={Stock} ></Route>

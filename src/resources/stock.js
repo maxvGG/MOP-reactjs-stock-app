@@ -9,7 +9,7 @@ export const stock = {
     },
     // &exactDate=20210604
     latestPriceURL: (ticker) => {
-       return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&exactDate=20200609&token=${iex.api_token}`
+       return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&token=${iex.api_token}`
     },
 
     formatPriceData: (data) => {
@@ -21,13 +21,25 @@ export const stock = {
         return formattedData
     },
 
-    getYesterdaysClose: (ticker, date, callback) =>{
-        fetch(stock.YesterdaysCloseURL(ticker, date))
+    getYesterdaysClose: (ticker, date, callback) => {
+        stock.getLastTradingDate(date).then((data) => {
+        fetch(stock.YesterdaysCloseURL(ticker, data[0].date))
         .then((response) => response.json())
         .then((data) => callback(stock.formatPriceData(data)))
+        })
+    },
+
+    getLastTradingDate: (date) => {
+        var today = stock.formatedate(date)
+        const url = `${iex.base_url}/ref-data/us/dates/trade/last/1/${today}?token=${iex.api_token}`
+        return fetch(url).then((res) => res.json());
     },
 
     YesterdaysCloseURL: (ticker, date) => {
-        return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&token=${iex.api_token}`
-     },
+        var LastTradingDate = stock.formatedate(date)
+        return `${iex.base_url}/stock/${ticker}/intraday-prices?chartLast=1&exactDate=${LastTradingDate}&token=${iex.api_token}`
+    },
+    formatedate: (date) => {
+        return new Date(date).toISOString().split('T')[0].replace(/-/g, '')
+    }
 }

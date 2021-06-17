@@ -22,17 +22,17 @@ class StockRow extends Component {
     }
 
     applyData(data) {
-        console.log(data)
+
+        const formattedPirce = (data.price == undefined) ? null : data.price.toFixed(2) 
+
         this.setState({
-            price: data.price.toFixed(2),
+            price: formattedPirce,
             date: data.date,
             time: data.time,
         });
         stock.getYesterdaysClose(this.props.ticker, data.date, (yesterday) => {
-
             const dollar_change = (data.price - yesterday.price).toFixed(2)
-            const percent_change = (10 * dollar_change / yesterday.price).toFixed(1)
-            
+            const percent_change = (data.price / yesterday.price).toFixed(1)
             this.setState({
                 // NOTE: price is a bad method name on yesterday
                 dollar_change: `${dollar_change}`,

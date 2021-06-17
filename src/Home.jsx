@@ -15,7 +15,7 @@ class Stock extends React.Component {
                                 <StockRow ticker='AAPL' />
                                 <StockRow ticker='GOOG' />
                                 <StockRow ticker='MSFT' />
-                                <StockRow ticker='AMZN'/>
+                                {/* <StockRow ticker='AMZN'/> */}
                             </ul>
                         </div>
                     </div>
