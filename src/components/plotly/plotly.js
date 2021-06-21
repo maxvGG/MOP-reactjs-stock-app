@@ -1,26 +1,26 @@
 import React from 'react'
 import Plot from 'react-plotly.js'
-
+import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-router-dom';
 class Stock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             stockChartXValues: [],
             stockChartYValues: [],
+            StockSymbol: this.props.ticker,
         }
     }
 
+    
     componentDidMount() {
         this.fetchStock();
     }
 
     fetchStock() {
         const pointerToThis = this;
-        console.log(this.props);
-        const StockSymbol = 'AMZN';
 
         const API_KEY = 'ICG1T5IU2X7MPB62';
-        let API_CALL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${StockSymbol}&outputsize=compact&apikey=${API_KEY}`;
+        let API_CALL = `https://www.alphavantage.co/query?function=TIME_SERIES_DAILY_ADJUSTED&symbol=${this.props.match.params.ticker}&outputsize=compact&apikey=${API_KEY}`;
         let stockChartXValuesFunction = [];
         let stockChartYValuesFunction = [];
 
@@ -60,8 +60,9 @@ class Stock extends React.Component {
                         marker: {color: 'red'},
                     },
                     ]}
-                    layout={ {width: 720, height: 440, title: 'name van stock moet nog komen'} }
+                    layout={ {width: 720, height: 440, title: this.props.match.params.ticker} }
                 />
+                <Link to='/'>go home</Link>
             </div>
         )
     }

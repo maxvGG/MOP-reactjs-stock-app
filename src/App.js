@@ -13,7 +13,7 @@ function App() {
       <a href="https://iexcloud.io">Data provided by IEX Cloud</a>
       <div className="App">
         {/* <NavLink to="/stock">stocks</NavLink> */}
-        <Route path='/stock' component={Stock} ></Route>
+        <Route path='/stock/:ticker' component={Stock} ></Route>
         <Route exact path='/' component={Home} />
       </div>
     </Router>

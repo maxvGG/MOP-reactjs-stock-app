@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { stock } from '../resources/stock';
+import { BrowserRouter as Router, Switch, Route, Link, NavLink } from 'react-router-dom';
 class StockRow extends Component {
 
     changeStyle() {
@@ -16,14 +17,14 @@ class StockRow extends Component {
             date: null,
             time: null,
             dollar_change: null,
-            percent_change: null
-            
+            percent_change: null,
+            ticker:null,
         }
     }
 
     applyData(data) {
 
-        const formattedPirce = (data.price == undefined) ? null : data.price.toFixed(2) 
+        const formattedPirce = (data.price === undefined) ? null : data.price.toFixed(2) 
 
         this.setState({
             price: formattedPirce,
@@ -36,7 +37,8 @@ class StockRow extends Component {
             this.setState({
                 // NOTE: price is a bad method name on yesterday
                 dollar_change: `${dollar_change}`,
-                percent_change: `(${percent_change}%)`
+                percent_change: `(${percent_change}%)`,
+                ticker: this.props.ticker,
             })
         })
     }
@@ -47,13 +49,19 @@ class StockRow extends Component {
 
     render() {
         return (
-            <li className="list-group-item align-self-left">
-                <b>{this.props.ticker}</b> ${this.state.price}
-                <span className='change' style={this.changeStyle()}>
-                    {this.state.dollar_change}
-                    &nbsp;{this.state.percent_change}
-                </span>
-            </li>
+            
+            <NavLink to={{
+                pathname: `/stock/${this.props.ticker}`,
+                }} >
+                    <li className="list-group-item align-self-left">
+                        <b>{this.props.ticker}</b> ${this.state.price}
+                        <span className='change' style={this.changeStyle()}>
+                            {this.state.dollar_change}
+                            &nbsp;{this.state.percent_change}
+                        </span>
+                    </li>
+                </NavLink>
+            
         )
     }
 }
