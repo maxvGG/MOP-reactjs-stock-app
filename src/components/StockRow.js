@@ -18,7 +18,6 @@ class StockRow extends Component {
             time: null,
             dollar_change: null,
             percent_change: null,
-            ticker:null,
         }
     }
 
@@ -38,7 +37,6 @@ class StockRow extends Component {
                 // NOTE: price is a bad method name on yesterday
                 dollar_change: `${dollar_change}`,
                 percent_change: `(${percent_change}%)`,
-                ticker: this.props.ticker,
             })
         })
     }

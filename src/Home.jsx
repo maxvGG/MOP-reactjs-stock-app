@@ -2,7 +2,7 @@ import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 import StockRow from './components/StockRow.js'
-
+import Search from './components/search/Searchbar.js'
 class Stock extends React.Component {
    
     render() {
@@ -10,12 +10,13 @@ class Stock extends React.Component {
             <div>
                 <div className="container">
                     <div className="col-md-4 mt-5">
+                        {/* <Search /> */}
                         <div className="card">
                             <ul className="list-group list-group-flush">
                                 <StockRow ticker='AAPL' />
                                 <StockRow ticker='GOOG' />
                                 <StockRow ticker='MSFT' />
-                                {/* <StockRow ticker='AMZN'/> */}
+                                <StockRow ticker='AMZN'/>
                             </ul>
                         </div>
                     </div>
